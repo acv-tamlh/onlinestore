@@ -30,7 +30,7 @@
     # Amazon::Ecs.options = { ... }
 
     # To override default options
-    res = Amazon::Ecs.item_search('ruby', {:search_index => 'Book', :response_group => 'Small', :sort => 'salesrank', :country => 'in'})
+    res = Amazon::Ecs.item_search('ruby', {:search_index => 'VideoGames', :response_group => 'Small', :sort => 'salesrank', :country => 'in'})
 
     res.is_valid_request?
     res.has_error?
