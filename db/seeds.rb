@@ -34,10 +34,10 @@ productGroups.each do |productGroup|
       image = item.get('MediumImage/URL')
       price = item_attributes.get("ListPrice/FormattedPrice")
       refurl = item.get('DetailPageURL')
-      description = item.get('EditorialReviews/EditorialReview/Content')
+      # review = item.get('EditorialReviews/EditorialReview/Content')
       puts res.error                                 # error message
       puts asin
-      Product.create!(asin: asin, title: title, artist: artist, price: price, productgroups_id: prg.id, image: image, refurl: refurl, description: description)
+      Product.create!(asin: asin, title: title, artist: artist, price: price, productgroup_id: prg.id, image: image, refurl: refurl)#, review: review)
     end
   end
 

@@ -28,12 +28,11 @@ ActiveRecord::Schema.define(version: 20180328112903) do
     t.string "artist"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "productgroups_id"
+    t.bigint "productgroup_id"
     t.string "image"
     t.string "refurl"
-    t.string "description"
     t.string "price"
-    t.index ["productgroups_id"], name: "index_products_on_productgroups_id"
+    t.index ["productgroup_id"], name: "index_products_on_productgroup_id"
   end
 
   create_table "users", force: :cascade do |t|
