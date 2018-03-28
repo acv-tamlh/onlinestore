@@ -30,7 +30,7 @@
     # Amazon::Ecs.options = { ... }
 
     # To override default options
-    res = Amazon::Ecs.item_search('ruby', {:search_index => 'VideoGames', :response_group => 'Small', :sort => 'salesrank', :country => 'in'})
+    res = Amazon::Ecs.item_search('ruby', {:search_index => 'Book', :response_group => 'Small', :sort => 'salesrank', :country => 'in'})
 
     res.is_valid_request?
     res.has_error?
@@ -42,10 +42,10 @@
     # Find elements matching 'Item' in response object
     res.items.each do |item|
       # Retrieve string value using XML path
-      puts item.get('ASIN')
-      puts item.get('ItemAttributes/Title')
-      puts item.get('ItemAttributes/Artist')
-      puts item.get('ItemAttributes/ProductGroup')
+      asin = item.get('ASIN')
+      title = item.get('ItemAttributes/Title')
+      artist = item.get('ItemAttributes/Artist')
+      # puts item.get('ItemAttributes/ProductGroup')
       puts '======='
       # puts item.get('ItemAttributes/Manufacturer')
       # puts item.get('ItemAttributes/Creator')
@@ -61,5 +61,5 @@
 
       # Return a hash object with the element names as the keys
       # item.get_hash('SmallImage/URL') # {:url => ..., :width => ..., :height => ...}
-
+      Product.create!(asin: asin, title: title, artist: artist)
     end
