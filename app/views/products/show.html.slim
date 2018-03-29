@@ -1,2 +1,22 @@
 h1 Products#show
-p Find me in app/views/products/show.html.slim
+div.container
+  h3.title
+    = @product.title
+  div.left-container.col-md-8.panel
+    img.img.img-reponsive src = @product.image
+  div.right-container.col-md-4.well
+    div.price
+      span Price:
+      span = @product.formattedprice
+    div.artist
+      h5 Artist:
+      h3.artist = @product.try(:artist)
+    div.product-groups
+      h4 Product Group
+      h3.product-group
+        = @product.productgroup.title
+    div.refurl
+      h4
+        = link_to 'Details on Amazon', @product.refurl
+  div.add-to-cart.btn.btn-success
+    = link_to 'Add to card'
