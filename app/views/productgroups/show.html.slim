@@ -1,0 +1,16 @@
+h1 Productgroups#show
+h3.title
+  span Group Name:
+  = @productgroup.title
+h3 Description
+blockquote
+  -if @productgroup.try(:description)
+    = @productgroup.try(:description)
+  -else
+    | Dont have Desription
+div Come back
+div.btn-group
+  button.btn.btn-default
+    = link_to 'Product List', products_path
+  button.btn.btn-default
+    =link_to 'Category List', productgroups_path

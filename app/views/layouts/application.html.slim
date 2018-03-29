@@ -7,6 +7,22 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    p.notice = notice
-    p.alert = alert
-    = yield
+    nav.navbar
+      .navbar-header
+        a.navbar-brand href="#"  Online Store
+      ul.nav.navbar-nav
+        li.active
+          = link_to 'Home', root_path
+        li
+          = link_to 'Product', products_path
+        li
+          = link_to 'Product Group', productgroups_path
+      form.navbar-form.navbar-left
+        .form-group
+          input.form-control name="search" placeholder="Search" type="text" /
+        / button.btn.btn-default type="submit"  Submit
+
+        p.notice = notice
+        p.alert = alert
+    div.container
+      = yield
