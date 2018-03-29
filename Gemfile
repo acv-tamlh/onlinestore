@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'formtastic', '~> 3.0'
 gem "slim-rails"
 gem 'devise'
 gem 'rails_admin', '~> 1.3'
