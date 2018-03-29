@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'products#index'
   resources :products
   resources :productgroups
-  resources :cart, only: [:show]
+  resources :carts, only: [:show]
   resources :order_items, only: [:create, :update, :destroy]
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
