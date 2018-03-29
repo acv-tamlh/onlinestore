@@ -6,9 +6,8 @@ class ProductgroupsController < ApplicationController
   end
 
   def show
-
     @limitproducts = @productgroup.products.page(params[:page]).per(5)
-
+    @order_item = current_order.order_items.new
   end
 
   def new

@@ -3,9 +3,10 @@ class OrderItem < ApplicationRecord
   belongs_to :order
 
   validate :product_present, :order_present
-
+  before_save :finalize
   # save product price, when user shopping and admin change price, user will use old price
   def unit_price
+    # byebug
     if persisted?
       self[:unit_price]
     else
