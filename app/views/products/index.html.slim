@@ -15,5 +15,7 @@ h1 Products#index
           td.col-md-4
             img.img.img-thumbnail.img-responsive src = product.image
           td.col-md-2 = product.formattedprice
-          td.col-md-2
+          td.col-md-6
             = link_to 'Details', product_path(product)
+          td.col-md-6
+            = link_to 'Add to cart', '#!'
