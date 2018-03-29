@@ -14,7 +14,7 @@
 Productgroup.delete_all
 Product.delete_all
 
-productGroups = ['Book','DVD','Toys','VideoGames','All']
+productGroups = ['Book','DVD','Toys','VideoGames', 'ArtsAndCrafts']
 
 productGroups.each do |productGroup|
   keywords = ['game', 'apple', 'phone', 'asus', 'friends']
@@ -27,17 +27,19 @@ productGroups.each do |productGroup|
                                   })
     res.items.each do |item|
       item_attributes = item.get_element('ItemAttributes')
-      # puts item
       asin = item.get('ASIN')
       title = item.get('ItemAttributes/Title')
       artist = item.get('ItemAttributes/Artist')
       image = item.get('MediumImage/URL')
-      price = item_attributes.get("ListPrice/FormattedPrice")
+      #price
+      price = item_attributes.get("ListPrice/Amount")
+      currency = item_attributes.get("ListPrice/CurrencyCode")
+      formattedprice = item_attributes.get("ListPrice/FormattedPrice")
+      #url to amazon
       refurl = item.get('DetailPageURL')
-      # review = item.get('EditorialReviews/EditorialReview/Content')
       puts res.error                                 # error message
       puts asin
-      Product.create!(asin: asin, title: title, artist: artist, price: price, productgroup_id: prg.id, image: image, refurl: refurl)#, review: review)
+      Product.create!(asin: asin, title: title, artist: artist, price: price, currency: currency, formattedprice: formattedprice, productgroup_id: prg.id, image: image, refurl: refurl)#, review: review)
     end
   end
 

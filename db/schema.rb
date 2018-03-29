@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328112903) do
+ActiveRecord::Schema.define(version: 20180329020523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,9 @@ ActiveRecord::Schema.define(version: 20180328112903) do
     t.bigint "productgroup_id"
     t.string "image"
     t.string "refurl"
-    t.string "price"
+    t.decimal "price", default: "0.0"
+    t.string "currency", default: "USD"
+    t.string "formattedprice", default: "$0.00"
     t.index ["productgroup_id"], name: "index_products_on_productgroup_id"
   end
 
