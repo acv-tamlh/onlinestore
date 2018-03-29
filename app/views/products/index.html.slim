@@ -4,18 +4,18 @@ h1 Products#index
   table.table
     thead
       tr
-        td.col-md-4 Title
-        td.col-md-4 Image
+        td.col-md-3 Title
+        td.col-md-2 Image
         td.col-md-2 Price
-        td.col-md-2 Handle
+        td.col-md-2 colspan="2" Handle
     tbody
       - @products.each do |product|
         tr
-          td.col-md-4 = product.title
-          td.col-md-4
-            img.img.img-thumbnail.img-responsive src = product.image
+          td.col-md-6 = product.title
+          td.col-md-2
+            img.img.img-thumbnail.img-responsive.product-thumbnail-image src = product.try(:image)
           td.col-md-2 = product.formattedprice
-          td.col-md-6
+          td
             = link_to 'Details', product_path(product)
-          td.col-md-6
+          td
             = link_to 'Add to cart', '#!'

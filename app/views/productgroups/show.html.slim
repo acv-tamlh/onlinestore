@@ -23,9 +23,9 @@ div.container.product-container
     tbody
       - @productgroup.products.each do |product|
         tr
-          td.col-md-4 = product.title
-          td.col-md-4
-            img.img.img-thumbnail.img-responsive src = product.image
+          td.col-md-6 = product.title
+          td.col-md-2
+            img.img.img-thumbnail.img-responsive.product-thumbnail-image src = product.try(:image)
           td.col-md-2 = product.formattedprice
           td
             = link_to 'Details', product_path(product)
