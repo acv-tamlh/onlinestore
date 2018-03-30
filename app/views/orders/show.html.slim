@@ -15,6 +15,7 @@
         div
           |Phone:&nbsp
           = @order.phone
+= link_to edit_order_path do
+  button.btn.btn-success
+    |Update checkout info
   = render 'shopping_cart'
-button.btn.btn-sucess
-  = link_to 'Update checkout info', edit_order_path

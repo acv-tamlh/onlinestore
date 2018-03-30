@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
     # byebug
     @order = Order.find(params[:id])
     order_params = params.require(:order).permit(:full_name, :email, :address, :phone)
-    return redirect_to @order, notice: 'Update sucessfully qwdqwqwe' if @order.update(order_params)
+    return redirect_to @order, notice: 'Update sucessfully' if @order.update(order_params)
     redirect_to @order, notice: 'Update fail'
   end
 
