@@ -1,4 +1,10 @@
 
+status = ['Inprocess', 'Shipping', 'Recieved']
+status.each do |s|
+  puts s
+  OrderStatus.create(name: s)
+end
+
   ACCESS_KEY_ID = "AKIAJWPWTVNYFLW7EKHQ"
   SECRET_KEY = "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"
   ENDPOINT = "webservices.amazon.in"
@@ -13,6 +19,8 @@
 
 Productgroup.delete_all
 Product.delete_all
+
+
 
 productGroups = ['Book','DVD','Toys','VideoGames', 'ArtsAndCrafts']
 
