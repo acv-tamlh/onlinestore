@@ -1,0 +1,9 @@
+= semantic_form_for @order do |f|
+  .field
+    = f.input :full_name
+    = f.input :email
+    = f.input :address
+    = f.input :phone
+
+  .action
+    = f.submit :submit

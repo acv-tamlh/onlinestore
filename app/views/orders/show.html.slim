@@ -1,0 +1,20 @@
+.shopping-cart
+  - if @order.try(:full_name)
+    .panel.panel-primary
+      .panel-heading Checkout Infomation
+      .panel-body
+        div
+          |Full Name:&nbsp
+          = @order.full_name
+        div
+          |Address:&nbsp
+          = @order.address
+        div
+          |Email:&nbsp
+          = @order.email
+        div
+          |Phone:&nbsp
+          = @order.phone
+  = render 'shopping_cart'
+button.btn.btn-sucess
+  = link_to 'Update checkout info', edit_order_path
