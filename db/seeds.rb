@@ -1,3 +1,6 @@
+OrderStatus.delete_all
+Productgroup.delete_all
+Product.delete_all
 
 status = ['Inprocess', 'Shipping', 'Recieved']
 status.each do |s|
@@ -17,8 +20,6 @@ end
       options[:associate_tag] = ASSOCIATE_TAG
     end
 
-Productgroup.delete_all
-Product.delete_all
 
 
 
