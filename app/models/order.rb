@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   # belongs_to :order_status
   has_many :order_items
-
+  belongs_to :user, optional: true
   before_create :set_order_status
   before_save :update_subtotal
 

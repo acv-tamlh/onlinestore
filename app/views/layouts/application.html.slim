@@ -17,6 +17,10 @@ html
           = link_to 'Product', products_path
         li
           = link_to 'Product Group', productgroups_path
+        li
+          - if user_signed_in?
+            = link_to 'History', histories_path
+
       form.navbar-form.navbar-left
         .form-group
           input.form-control name="search" placeholder="Search" type="text" /
