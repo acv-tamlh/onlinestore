@@ -21,11 +21,16 @@ html
         .form-group
           input.form-control name="search" placeholder="Search" type="text" /
         / button.btn.btn-default type="submit"  Submit
-
-        div.container
-          .col-xs-6.text-right
-            h1.cart-text
-            = render 'layouts/cart_text'
+      .col-xs-6.text-right
+        h1.cart-text
+        = render 'layouts/cart_text'
+        - if user_signed_in?
+            = current_user.email
+            = link_to destroy_user_session_path, method: :delete do
+              button.btn.btn-link Logout
+        - else
+          = link_to new_user_session_path do
+            button.btn.btn-link Sign in
         p.notice = notice
         p.alert = alert
     div.container

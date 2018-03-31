@@ -1,21 +1,28 @@
 .shopping-cart
-  - if @order.try(:full_name)
+  - if user_signed_in?
     .panel.panel-primary
       .panel-heading Checkout Infomation
       .panel-body
         div
           |Full Name:&nbsp
-          = @order.full_name
+          = current_user.full_name
         div
           |Address:&nbsp
-          = @order.address
+          = current_user.address
         div
           |Email:&nbsp
-          = @order.email
+          = current_user.email
         div
           |Phone:&nbsp
-          = @order.phone
-= link_to edit_order_path do
-  button.btn.btn-success
-    |Update checkout info
+          = current_user.phone
+- if user_signed_in?
+  = link_to edit_user_registration_path do
+    button.btn.btn-success
+      |Update checkout info
+-else
+  = link_to new_user_registration_path do
+    button.btn.btn-success
+      |sign up
+
+
 = render 'shopping_cart'
