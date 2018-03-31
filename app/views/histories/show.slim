@@ -1,1 +1,28 @@
-|show history
+.shopping-cart
+  - if user_signed_in?
+    .panel.panel-primary
+      .panel-heading Checkout Infomation
+      .panel-body
+        div
+          |Full Name:&nbsp
+          = current_user.full_name
+        div
+          |Address:&nbsp
+          = current_user.address
+        div
+          |Email:&nbsp
+          = current_user.email
+        div
+          |Phone:&nbsp
+          = current_user.phone
+- if user_signed_in?
+  = link_to edit_user_registration_path do
+    button.btn.btn-success
+      |Update checkout info
+-else
+  = link_to new_user_registration_path do
+    button.btn.btn-success
+      |sign up
+
+
+= render 'history_orders'
