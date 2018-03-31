@@ -47,8 +47,7 @@ productGroups.each do |productGroup|
       refurl = item.get('DetailPageURL')
       puts res.error                                 # error message
       puts asin
-      p = Product.new(asin: asin, title: title, artist: artist, price: price, currency: currency, formattedprice: formattedprice, productgroup_id: prg.id, image: image, refurl: refurl)#, review: review)
-      p.save!
+      p = Product.create(asin: asin, title: title, artist: artist, price: price, currency: currency, formattedprice: formattedprice, productgroup_id: prg.id, image: image, refurl: refurl)#, review: review)
     end
   end
 
