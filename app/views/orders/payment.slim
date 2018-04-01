@@ -1,2 +1,8 @@
+.container
+  h1.text-center
+    |Payment Method
 a data-method="#{@payment.links[1].method}" href="#{@payment.links[1].href}"
   img alt="" src="http://ozzyjames.co.uk/wp-content/uploads/2016/01/paypal-icon-copy.jpg" width="300px" /
+- if !params[:paymentId].nil?
+  .well
+    a.btn.btn-info href="#{execute_order_path(params[:id],paymentId: params[:paymentId])}"  Confirm

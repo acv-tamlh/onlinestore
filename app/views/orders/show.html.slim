@@ -23,6 +23,10 @@
   = link_to new_user_registration_path do
     button.btn.btn-success
       |sign up
+- if current_order.order_status_id == !2
+  = link_to payment_order_path(current_order.id) do
+    button.btn.btn-primary Checkout
+- else
+  p You was pay this order
 
-= link_to 'Checkout', payment_order_path(current_order.id)
 = render 'shopping_cart'

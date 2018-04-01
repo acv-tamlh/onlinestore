@@ -1,8 +1,8 @@
   # Mode can be 'live' or 'sandbox'
 development: &default
   mode: sandbox
-  client_id: AdDP6Z0PVwCQ3Zu-qd0cFiBJ_whQ2zNLxNV2jQdhfnUXKCiCv69e-pC1vJXPYaDGTm2ZcPyrrAKT2NZc
-  client_secret: EKmDJLzG8nW4tDtJUV8NdN9yJ5we5qvW_QxTSjBzXb4pqZ5nqRcBuYl8hJ2sv8ky6BPCNrP1qxAEPLRO
+  client_id: ASy9SXCS697k5d0afuKC_m0oLWlS6-vFw2iDwnNDTSkydWP27rsi3mvIFLcch5ElO0Lx-oMYLh5o9EdN
+  client_secret: ENq_MwxW6BBQb3jD5r1iZibdgaKkvapKhswDQ72hJLMEeb31JSZ_jNQZxImJlw1ZV8fggB2KlxubX2R3
   # # with Proxy
   # http_proxy: http://proxy-ipaddress:3129/
   # # with CA File

@@ -1,5 +1,4 @@
 require 'paypal-sdk-rest'
-include PayPal::SDK::REST
 class OrdersController < ApplicationController
   before_action :get_order#, only: [:show, :edit, :update, :payment]
 
@@ -20,16 +19,15 @@ class OrdersController < ApplicationController
       :payer =>  {
         :payment_method =>  "paypal" },
       :redirect_urls => {
-        :return_url => payment_order_path(params[:id]),
-        :cancel_url => products_path },
+        :return_url => 'http://localhost:3000' + payment_order_path(params[:id]),
+        :cancel_url => 'http://localhost:3000' + products_path },
       :transactions =>  [{
         :amount =>  {
           :total =>  @order.subtotal,
           :currency =>  "USD" },
         :description =>  "This is the payment transaction description." }]})
-        # binding.pry
 
-      if @payment.save
+      if @payment.create
         @payment.id     # Payment Id
       else
         @payment.error  # Error Hash
@@ -43,7 +41,7 @@ class OrdersController < ApplicationController
   def execute
     @payment = PayPal::SDK::REST::Payment.find(@order.payment_id)
     if @payment.execute( :payer_id => @order.payer_id   )
-      @order.update(status: true)
+      @order.update(order_status_id: 3)
       flash[:notice] = 'Payment success!'
       redirect_to root_path
     else
