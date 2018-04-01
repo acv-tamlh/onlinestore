@@ -6,4 +6,7 @@ protected
     order = current_order
     order.update!(user_id: current_user.id)
   end
+  def after_update_path_for(resource)
+    order_path(current_order.id)
+  end
 end

@@ -21,12 +21,14 @@
       |Update checkout info
 -else
   = link_to new_user_registration_path do
-    button.btn.btn-success
+    button.btn.btn-link
       |sign up
-- if current_order.order_status_id == !2
+  = link_to user_session_path do
+    button.btn.btn-link
+      |sign in
+- if current_order.order_status_id != 3 && current_order.order_items.size > 0 && user_signed_in? && !current_user.full_name.nil? 
   = link_to payment_order_path(current_order.id) do
     button.btn.btn-primary Checkout
-- else
-  p You was pay this order
+
 
 = render 'shopping_cart'

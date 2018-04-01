@@ -1,11 +1,6 @@
-require 'paypal-sdk-rest'
+# require 'paypal-sdk-rest'
 class OrdersController < ApplicationController
   before_action :get_order#, only: [:show, :edit, :update, :payment]
-
-  # PayPal::SDK::REST.set_config(
-  #   :mode => "sandbox", # "sandbox" or "live"
-  #   :client_id => "AdDP6Z0PVwCQ3Zu-qd0cFiBJ_whQ2zNLxNV2jQdhfnUXKCiCv69e-pC1vJXPYaDGTm2ZcPyrrAKT2NZc",
-  #   :client_secret => "EKmDJLzG8nW4tDtJUV8NdN9yJ5we5qvW_QxTSjBzXb4pqZ5nqRcBuYl8hJ2sv8ky6BPCNrP1qxAEPLRO")
 
   def show
     @order_items = current_order.order_items
@@ -41,7 +36,14 @@ class OrdersController < ApplicationController
   def execute
     @payment = PayPal::SDK::REST::Payment.find(@order.payment_id)
     if @payment.execute( :payer_id => @order.payer_id   )
-      @order.update(order_status_id: 3)
+      @order.update(order_status_id: 3) #Recevied
+      if user_signed_in?
+        @order.update(user_id: current_user.id)
+      else
+        redirect_to user_session_path
+      end
+      current_order = Order.create
+      session[:order_id] = current_order.id
       flash[:notice] = 'Payment success!'
       redirect_to root_path
     else
