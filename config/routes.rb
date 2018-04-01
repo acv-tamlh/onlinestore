@@ -4,7 +4,12 @@ Rails.application.routes.draw do
   resources :products
   resources :productgroups
   # resources :carts
-  resources :orders
+  resources :orders do
+    member do
+      get 'payment'
+      get 'execute'
+    end
+  end
   resources :order_items, only: [:create, :update, :destroy]
 
   resources :histories, only: [:index, :show]
