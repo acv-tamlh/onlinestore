@@ -14,8 +14,8 @@ class OrdersController < ApplicationController
       :payer =>  {
         :payment_method =>  "paypal" },
       :redirect_urls => {
-        :return_url => 'http://localhost:3000' + payment_order_path(params[:id]),
-        :cancel_url => 'http://localhost:3000' + products_path },
+        :return_url => 'https://onlinestore-tamlhacv.herokuapp.com/' + payment_order_path(params[:id]),
+        :cancel_url => 'https://onlinestore-tamlhacv.herokuapp.com/' + products_path },
       :transactions =>  [{
         :amount =>  {
           :total =>  @order.subtotal,
