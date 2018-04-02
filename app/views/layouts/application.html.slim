@@ -29,7 +29,7 @@ html
         h1.cart-text
         = render 'layouts/cart_text'
         - if user_signed_in?
-            = current_user.email
+            = link_to current_user.email, edit_user_registration_path
             = link_to destroy_user_session_path, method: :delete do
               button.btn.btn-link Logout
         - else

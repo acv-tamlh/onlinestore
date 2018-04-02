@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
 
   def payment
     # Build Payment object
-    if current_user.full_name.nil?
+    if current_user.full_name.blank?
       redirect_to edit_user_registration_path
     end
 
@@ -41,7 +41,7 @@ class OrdersController < ApplicationController
                       payer_id: params[:PayerID])
       end
   end
-  
+
   def execute
     @payment = PayPal::SDK::REST::Payment.find(@order.payment_id)
     if @payment.execute( :payer_id => @order.payer_id   )
