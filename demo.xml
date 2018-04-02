@@ -1,0 +1,41 @@
+<Collection version="2.0" id="74j5hc4je3b9">
+  <Name>A Funfair in Bangkok</Name>
+  <PermaLink>Funfair in Bangkok</PermaLink>
+  <PermaLinkIsName>True</PermaLinkIsName>
+  <Description>A small funfair near On Nut in Bangkok.</Description>
+  <Date>2009-08-03T00:00:00</Date>
+  <IsHidden>False</IsHidden>
+  <Items>
+    <Item filename="AGC_1998.jpg">
+      <Title>Funfair in Bangkok</Title>
+      <Caption>A small funfair near On Nut in Bangkok.</Caption>
+      <Authors>Anthony Bouch</Authors>
+      <Copyright>Copyright © Anthony Bouch</Copyright>
+      <CreatedDate>2009-08-07T19:22:08</CreatedDate>
+      <Keywords>
+        <Keyword>Funfair</Keyword>
+        <Keyword>Bangkok</Keyword>
+        <Keyword>Thailand</Keyword>
+      </Keywords>
+      <ThumbnailSize width="133" height="200" />
+      <PreviewSize width="532" height="800" />
+      <OriginalSize width="2279" height="3425" />
+    </Item>
+    <Item filename="AGC_1164.jpg" iscover="True">
+      <Title>Bumper Cars at a Funfair in Bangkok</Title>
+      <Caption>Bumper cars at a small funfair near On Nut in Bangkok.</Caption>
+      <Authors>Anthony Bouch</Authors>
+      <Copyright>Copyright © Anthony Bouch</Copyright>
+      <CreatedDate>2009-08-03T22:08:24</CreatedDate>
+      <Keywords>
+        <Keyword>Bumper Cars</Keyword>
+        <Keyword>Funfair</Keyword>
+        <Keyword>Bangkok</Keyword>
+        <Keyword>Thailand</Keyword>
+      </Keywords>
+      <ThumbnailSize width="200" height="133" />
+      <PreviewSize width="800" height="532" />
+      <OriginalSize width="3725" height="2479" />
+    </Item>
+  </Items>
+</Collection>
