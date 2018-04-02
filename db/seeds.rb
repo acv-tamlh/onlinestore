@@ -2,7 +2,7 @@ Productgroup.delete_all
 Product.delete_all
 OrderStatus.delete_all
 
-status = ['Inprocess', 'Shipping', 'Recieved']
+status = ['Inprocess', 'Recieved']
 status.each do |s|
   puts s
   OrderStatus.create(name: s)
