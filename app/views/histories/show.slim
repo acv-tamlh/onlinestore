@@ -15,15 +15,18 @@
         div
           |Phone:&nbsp
           = current_user.phone
-- if user_signed_in?
-  = link_to edit_user_registration_path do
-    button.btn.btn-success
-      |Update checkout info
--else
-  = link_to new_user_registration_path do
-    button.btn.btn-success
-      |sign up
+
+- if @order.order_status_id != 2 && @order.order_items.size <= 0
+  = render 'layouts/partials/product_nil'
+- else
+  = render 'layouts/partials/update_info_checkout'
 
 
 = render 'history_orders'
+= link_to histories_path do
+  button.btn.btn-link
+    |Back to history
+= link_to root_path do
+  button.btn.btn-link
+    |Home
 = paginate @history

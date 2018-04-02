@@ -5,6 +5,7 @@ class Order < ApplicationRecord
   before_create :set_order_status
   before_save :update_subtotal
 
+  paginates_per 5
   def subtotal
     order_items.collect{ |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
 
