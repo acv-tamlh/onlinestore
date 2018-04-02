@@ -5,4 +5,6 @@ class Product < ApplicationRecord
   has_many :order_items
 
   default_scope { order(created_at: :DESC) }
+  paginates_per 10
+
 end
