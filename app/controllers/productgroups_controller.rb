@@ -14,8 +14,8 @@ class ProductgroupsController < ApplicationController
 
   def create
     @productgroup = Productgroup.new(params_productgroup)
-    return redirect_to productgroup_path(@productgroup), notice: 'Create sucessfully' if @productgroup.save
-    return render :new, alert: 'Create fail'
+    return render :new, alert: 'Create fail' unless @productgroup.save
+    redirect_to productgroup_path(@productgroup), notice: 'Create sucessfully'
   end
   private
     def get_productgroup
@@ -23,6 +23,6 @@ class ProductgroupsController < ApplicationController
     end
 
     def params_productgroup
-      params_productgroup = params.require(:productgroup).permit(:title, :description)
+      params.require(:productgroup).permit(:title, :description)
     end
 end
