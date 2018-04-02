@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 gem "slim-rails"
 gem 'devise'
 gem 'rails_admin', '~> 1.3'
+gem 'ruby-hmac', '~> 0.3'
 gem 'xml-simple'
 gem 'nokogiri'
 gem 'amazon-ecs'

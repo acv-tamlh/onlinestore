@@ -1,3 +1,7 @@
+
+  ACCESS_KEY_ID = "AKIAJWPWTVNYFLW7EKHQ"
+  SECRET_KEY = "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"
+  ENDPOINT = "webservices.amazon.in"
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -17,7 +21,6 @@
   ENDPOINT = "webservices.amazon.in"
 
   REQUEST_URI = "/onca/xml"
-
   ASSOCIATE_TAG = 'onlinestore'
 
 
@@ -26,6 +29,40 @@
       options[:AWS_secret_key] = SECRET_KEY
       options[:associate_tag] = ASSOCIATE_TAG
     end
+
+Productgroup.delete_all
+Product.delete_all
+
+productGroups = ['Book','DVD','Toys','VideoGames', 'ArtsAndCrafts']
+
+productGroups.each do |productGroup|
+  keywords = ['game', 'apple', 'phone', 'asus', 'friends']
+  prg = Productgroup.create!(title: productGroup)
+  keywords.each do |kw|
+    res = Amazon::Ecs.item_search(kw, {
+                                  :search_index => productGroup,
+                                  :response_group => 'Medium',
+                                  :sort => 'salesrank'
+                                  })
+    res.items.each do |item|
+      item_attributes = item.get_element('ItemAttributes')
+      asin = item.get('ASIN')
+      title = item.get('ItemAttributes/Title')
+      artist = item.get('ItemAttributes/Artist')
+      image = item.get('MediumImage/URL')
+      #price
+      price = item_attributes.get("ListPrice/Amount")
+      currency = item_attributes.get("ListPrice/CurrencyCode")
+      formattedprice = item_attributes.get("ListPrice/FormattedPrice")
+      #url to amazon
+      refurl = item.get('DetailPageURL')
+      puts res.error                                 # error message
+      puts asin
+      Product.create!(asin: asin, title: title, artist: artist, price: price, currency: currency, formattedprice: formattedprice, productgroup_id: prg.id, image: image, refurl: refurl)#, review: review)
+    end
+  end
+
+end
     # To replace default options
     # Amazon::Ecs.options = { ... }
 
