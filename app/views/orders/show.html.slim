@@ -29,7 +29,7 @@
   = link_to user_session_path do
     button.btn.btn-link
       |Login
-- if @order.order_status_id != 2 && @order_items.size > 0
+- if @order.order_status_id != 2 && @order_items.size > 0 && user_signed_in?
   = link_to payment_order_path(current_order.id) do
     button.btn.btn-primary Checkout
 
