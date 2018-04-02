@@ -45,6 +45,7 @@ class OrdersController < ApplicationController
       current_order = Order.create
       session[:order_id] = current_order.id
       flash[:notice] = 'Payment success!'
+      ResetPasswordMailer.welcome_email(current_user).deliver_later
       redirect_to root_path
     else
        flash[:notice] = @payment.error # Error Hash

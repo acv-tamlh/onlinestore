@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
 
   def show
     @order_item = current_order.order_items.new
+    ResetPasswordMailer.welcome_email(current_user).deliver_later
   end
 
   private

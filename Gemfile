@@ -50,6 +50,7 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem "awesome_print"
+  gem "letter_opener"
 end
 
 group :development do
