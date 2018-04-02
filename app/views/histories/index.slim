@@ -20,7 +20,7 @@
       .panel-heading
         |Recieved
         = render 'history_order', order: order
-  - else
+  - if order.order_status_id != 2 &&  order.order_items.size > 0
     .panel.panel-warning
       .panel-heading
         |In Process Cart
