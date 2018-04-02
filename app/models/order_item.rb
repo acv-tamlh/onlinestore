@@ -6,26 +6,19 @@ class OrderItem < ApplicationRecord
   before_save :finalize
   # save product price, when user shopping and admin change price, user will use old price
   def unit_price
-    # byebug
-    if persisted?
-      self[:unit_price]
-    else
-      product.price
-    end
+    return self[:unit_price] if persisted?
+    product.price
   end
+
   def total_price
     unit_price * quantity
   end
   private
     def product_present
-      if product.nil?
-        errors.add(:product, "is not avalable")
-      end
+      errors.add(:product, "is not avalable") if product.blank?
     end
     def order_present
-      if order.nil?
-        errors.add(:order, 'is not a valid order')
-      end
+      errors.add(:order, 'is not a valid order') if order.blank?
     end
     def finalize
       self[:unit_price] = unit_price

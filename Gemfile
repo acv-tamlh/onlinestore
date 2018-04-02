@@ -51,6 +51,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem "awesome_print"
   gem "letter_opener"
+  gem 'dotenv-rails'
 end
 
 group :development do

@@ -1,4 +1,4 @@
-# require 'paypal-sdk-rest'
+
 class OrdersController < ApplicationController
   before_action :get_order#, only: [:show, :edit, :update, :payment]
 
@@ -9,13 +9,15 @@ class OrdersController < ApplicationController
 
   def payment
     # Build Payment object
+    binding.pry
+    # puts ENV["HOST_NAME"]
     @payment = PayPal::SDK::REST::Payment.new({
       :intent =>  "sale",
       :payer =>  {
         :payment_method =>  "paypal" },
       :redirect_urls => {
-        :return_url => 'http://localhost:3000' + payment_order_path(params[:id]),
-        :cancel_url => 'http://localhost:3000' + products_path },
+        :return_url => ENV["HOST_NAME"] + payment_order_path(params[:id]),
+        :cancel_url => ENV["HOST_NAME"] + products_path },
       :transactions =>  [{
         :amount =>  {
           :total =>  @order.subtotal,
