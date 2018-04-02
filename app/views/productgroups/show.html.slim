@@ -21,7 +21,7 @@ div.container.product-container
         td.col-md-2 Price
         td.col-md-2 colspan="2" Handle
     tbody
-      - @productgroup.products.each do |product|
+      - @limitproducts.each do |product|
         tr
           td.col-md-6 = product.title
           td.col-md-2
@@ -31,7 +31,7 @@ div.container.product-container
             = link_to 'Details', product_path(product)
           td
             = link_to 'Add to cart', '#!'
-
+  = paginate @limitproducts
 div Come back
 div.btn-group
   button.btn.btn-default
