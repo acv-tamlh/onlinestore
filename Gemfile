@@ -34,7 +34,10 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem "slim-rails"
 gem 'devise'
-
+gem 'rails_admin', '~> 1.3'
+gem 'xml-simple'
+gem 'nokogiri'
+gem 'amazon-ecs'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
