@@ -56,7 +56,7 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'rails-controller-testing'
   gem 'factory_bot_rails'
-
+  gem 'kaminari-rspec'
 end
 
 group :development do
