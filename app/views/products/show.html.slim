@@ -1,0 +1,26 @@
+div.container
+  h3.title
+    = @product.title
+  div.left-container.col-md-8.panel
+    img.img.img-reponsive src = @product.image
+  div.right-container.col-md-4.well
+    h2.price
+      span Price: &nbsp
+      span = @product.formattedprice
+    div.artist
+      - if @product.try(:artist)
+        h5 Artist:
+        h3.artist = @product.try(:artist)
+    div.product-groups
+      h3.product-group
+        = link_to @product.productgroup.title, productgroup_path(@product.productgroup_id)
+    div.refurl
+      h6.right
+        = link_to 'Details on Amazon', @product.refurl
+  div.add-to-cart.btn.btn-success
+    = link_to 'Add to card'
+
+hr
+div.container.relate-product
+  h3 Relate Product
+    

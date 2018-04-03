@@ -1,0 +1,40 @@
+h1 Productgroups#show
+h3.title
+  span Group Name:
+  = @productgroup.title
+h3 Description
+blockquote
+  -if @productgroup.try(:description)
+    = @productgroup.try(:description)
+  -else
+    | Dont have Desription
+
+
+h1 Product
+div.container.product-container
+.table-responsive
+  table.table
+    thead
+      tr
+        td.col-md-4 Title
+        td.col-md-4 Image
+        td.col-md-2 Price
+        td.col-md-2 colspan="2" Handle
+    tbody
+      - @productgroup.products.each do |product|
+        tr
+          td.col-md-6 = product.title
+          td.col-md-2
+            img.img.img-thumbnail.img-responsive.product-thumbnail-image src = product.try(:image)
+          td.col-md-2 = product.formattedprice
+          td
+            = link_to 'Details', product_path(product)
+          td
+            = link_to 'Add to cart', '#!'
+
+div Come back
+div.btn-group
+  button.btn.btn-default
+    = link_to 'Product List', products_path
+  button.btn.btn-default
+    =link_to 'Product group List', productgroups_path

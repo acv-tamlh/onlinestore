@@ -1,0 +1,10 @@
+= semantic_form_for @productgroup do |f|
+  .form-group
+    = f.label :title
+    = f.input :title
+  .form-group
+    = f.label :description
+    = f.input :description
+
+  button.btn.btn-default
+    =f.submit :submit
