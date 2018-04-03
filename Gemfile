@@ -52,6 +52,8 @@ group :development, :test do
   gem "awesome_print"
   gem "letter_opener"
   gem 'dotenv-rails'
+  gem 'rspec-rails', '~> 3.7'
+
 end
 
 group :development do
