@@ -52,7 +52,10 @@ group :development, :test do
   gem "awesome_print"
   gem "letter_opener"
   gem 'dotenv-rails'
-  gem 'rspec-rails', '~> 3.7'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'rails-controller-testing'
+  gem 'factory_bot_rails'
 
 end
 
