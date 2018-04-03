@@ -2,7 +2,8 @@
   .row
     .col-xs-8
       img.col-xs-4.img-reponsive src = product.image
-      h4.col-xs-8= product.title
+      h4.col-xs-8
+        = link_to product.title, product_path(product)
     .col-xs-4
       = semantic_form_for order_item, remote: true do |f|
         h4.text-right

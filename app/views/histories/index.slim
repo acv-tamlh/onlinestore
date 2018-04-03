@@ -1,0 +1,28 @@
+|index history
+.panel.panel-primary
+  .panel-heading Checkout Infomation
+  .panel-body
+    div
+      |Full Name:&nbsp
+      = current_user.full_name
+    div
+      |Address:&nbsp
+      = current_user.address
+    div
+      |Email:&nbsp
+      = current_user.email
+    div
+      |Phone:&nbsp
+      = current_user.phone
+- @histories.each do |order|
+  - if order.order_status_id == 2 && order.order_items.size > 0
+    .panel.panel-success
+      .panel-heading
+        |Recieved
+        = render 'history_order', order: order
+  - if order.order_status_id != 2 &&  order.order_items.size > 0
+    .panel.panel-warning
+      .panel-heading
+        |In Process Cart
+        = render 'history_order', order: order
+= paginate @histories
