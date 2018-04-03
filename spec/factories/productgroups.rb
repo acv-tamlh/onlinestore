@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :productgroup do
-    title "MyString"
-    description "MyString"
+    title 'as'
   end
 end

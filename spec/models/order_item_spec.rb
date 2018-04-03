@@ -22,7 +22,7 @@ RSpec.describe OrderItem, type: :model do
   describe 'Hook' do
     context 'before_save' do
       it 'finalize' do
-        order_item = build(:order_item)
+        order_item = create(:order_item, order_id: order.id)
         expect(order_item.total_price).to eq order_item.quantity * order_item.unit_price
         order_item.save
       end
