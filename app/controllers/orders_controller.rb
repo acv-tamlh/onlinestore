@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
 
   def show
     @order_items = current_order.order_items
-    @limit_order_items = @order_items.page(params[:page]).per(1)
+    @limit_order_items = @order_items.page(params[:page])
   end
 
   def payment
