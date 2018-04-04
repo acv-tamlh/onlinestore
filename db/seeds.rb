@@ -1,17 +1,10 @@
 Productgroup.delete_all
 Product.delete_all
-OrderStatus.delete_all
 
-status = ['Inprocess', 'Recieved']
-status.each do |s|
-  puts s
-  OrderStatus.create(name: s)
-end
-
-  ACCESS_KEY_ID = ENV["ACCESS_KEY_ID"]
-  SECRET_KEY = ENV["SECRET_KEY"]
-  ENDPOINT = "webservices.amazon.in"
-  ASSOCIATE_TAG = 'onlinestore'
+ACCESS_KEY_ID = ENV["ACCESS_KEY_ID"]
+SECRET_KEY = ENV["SECRET_KEY"]
+ENDPOINT = "webservices.amazon.in"
+ASSOCIATE_TAG = 'onlinestore'
 
 
 Amazon::Ecs.configure do |options|
