@@ -45,9 +45,8 @@ class OrdersController < ApplicationController
   def execute
     @payment = PayPal::SDK::REST::Payment.find(@order.payment_id)
     if @payment.execute( :payer_id => @order.payer_id   )
-      @order.update(order_status_id: 2) #Recevied
-      current_order = Order.create(user_id: current_user.id)
-      session[:order_id] = current_order.id
+      @order.update(order_status: 'Paid') #Recevied
+      new_order_after_pay (current_user)
       flash[:notice] = 'Payment success!'
       redirect_to histories_path
     else
@@ -59,5 +58,10 @@ class OrdersController < ApplicationController
   private
     def get_order
       @order = Order.find(params[:id])
+    end
+
+    def new_order_after_pay (user)
+      current_order = Order.create(user_id: user.id)
+      session[:order_id] = current_order.id
     end
 end

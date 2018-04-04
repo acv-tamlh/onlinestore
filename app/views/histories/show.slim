@@ -16,14 +16,10 @@
           |Phone:&nbsp
           = current_user.phone
 
-- if @order.order_status_id != 2 && @order.order_items.size <= 0
+- if @order.order_status != 'Paid' && @order.order_items.size <= 0
   = render 'layouts/partials/product_nil'
 - else
-  = link_to edit_user_registration_path do
-    button.btn.btn-success
-      |Update checkout info
-  = link_to payment_order_path(@order.id) do
-    button.btn.btn-primary Checkout
+  =render 'layouts/partials/update_infomation'
 
 
 = render 'history_orders'
