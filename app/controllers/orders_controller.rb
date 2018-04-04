@@ -9,12 +9,14 @@ class OrdersController < ApplicationController
 
   def payment
     # Build Payment object
+    @order.update(order_status: 'Waiting')
+    
     if current_user.full_name.blank?
       redirect_to edit_user_registration_path
     end
 
     if @order.user_id.nil?
-      @order.update(user_id: current_user.id)
+      @order.update(user_id: current_user.id, order_status: 'Waiting')
     end
 
     @payment = PayPal::SDK::REST::Payment.new({

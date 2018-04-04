@@ -20,7 +20,8 @@
   = render 'layouts/partials/product_nil'
 - else
   =render 'layouts/partials/update_infomation'
-
+  = link_to payment_order_path(@order.id) do
+    button.btn.btn-primary Checkout
 
 = render 'history_orders'
 = link_to histories_path do
