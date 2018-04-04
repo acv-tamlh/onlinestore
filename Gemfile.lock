@@ -84,6 +84,8 @@ GEM
     dotenv-rails (2.2.1)
       dotenv (= 2.2.1)
       railties (>= 3.2, < 5.2)
+    enumerize (2.2.2)
+      activesupport (>= 3.2)
     erubi (1.7.1)
     execjs (2.7.0)
     factory_bot (4.8.2)
@@ -147,6 +149,9 @@ GEM
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
+    pry-byebug (3.6.0)
+      byebug (~> 10.0)
+      pry (~> 0.10)
     public_suffix (3.0.2)
     puma (3.11.3)
     rack (2.0.4)
@@ -296,6 +301,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   dotenv-rails
+  enumerize
   factory_bot_rails
   formtastic (~> 3.0)
   jbuilder (~> 2.5)
@@ -305,7 +311,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   paypal-sdk-rest
   pg (>= 0.18, < 2.0)
-  pry
+  pry-byebug
   puma (~> 3.7)
   rails (~> 5.1.5)
   rails-controller-testing

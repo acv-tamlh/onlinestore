@@ -1,4 +1,3 @@
-|index history
 .panel.panel-primary
   .panel-heading Checkout Infomation
   .panel-body
@@ -15,14 +14,23 @@
       |Phone:&nbsp
       = current_user.phone
 - @histories.each do |order|
-  - if order.order_status_id == 2 && order.order_items.size > 0
-    .panel.panel-success
-      .panel-heading
-        |Recieved
-        = render 'history_order', order: order
-  - if order.order_status_id != 2 &&  order.order_items.size > 0
-    .panel.panel-warning
-      .panel-heading
-        |In Process Cart
-        = render 'history_order', order: order
+  -if order.order_items.size > 0
+    - case order.order_status
+      - when 'Paid'
+        .panel.panel-success
+          .panel-heading
+            = order.order_status
+            = render 'history_order', order: order
+
+      - when 'In Process'
+        .panel.panel-info
+          .panel-heading
+            = order.order_status
+            = render 'history_order', order: order
+
+      - when 'Waiting'
+        .panel.panel-warning
+          .panel-heading
+            = order.order_status
+            = render 'history_order', order: order
 = paginate @histories

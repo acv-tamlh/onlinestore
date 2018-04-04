@@ -16,22 +16,13 @@
           |Phone:&nbsp
           = current_user.phone
 - if user_signed_in?
-  = link_to edit_user_registration_path do
-    button.btn.btn-success
-      |Update checkout infos
+  =render 'layouts/partials/update_infomation'
 -else
-  = link_to new_user_registration_path do
-    button.btn.btn-link
-      |Register
-  = link_to user_session_path do
-    button.btn.btn-link
-      |Login
-- if @order.order_status_id != 2 && @order_items.size > 0 && user_signed_in?
+  = render 'layouts/partials/register_signin'
+
+- if @order.order_status != 'Paid' && @order_items.size > 0 && user_signed_in?
   = link_to payment_order_path(current_order.id) do
     button.btn.btn-primary Checkout
-
-- if @order.order_items.size <= 0
-  = render 'layouts/partials/product_nil'
 
 = render 'shopping_cart'
 = paginate @limit_order_items

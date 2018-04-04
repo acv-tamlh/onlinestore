@@ -7,10 +7,11 @@ RSpec.describe Order, type: :model do
   end
   describe 'Hook' do
     context 'before_create' do
+      let!(:order) { build(:order) }
       it 'set_order_status' do
-        order = build(:order)
-        expect(order.order_status_id).to eq OrderStatus.first.id
+        expect(order.order_status).not_to eq 'In Process'
         order.save
+        expect(order.order_status).to eq 'In Process'
       end
     end
     context 'before_create' do

@@ -9,12 +9,14 @@ class OrdersController < ApplicationController
 
   def payment
     # Build Payment object
+    @order.update(order_status: 'Waiting')
+
     if current_user.full_name.blank?
       redirect_to edit_user_registration_path
     end
 
     if @order.user_id.nil?
-      @order.update(user_id: current_user.id)
+      @order.update(user_id: current_user.id, order_status: 'Waiting')
     end
 
     @payment = PayPal::SDK::REST::Payment.new({
@@ -45,9 +47,8 @@ class OrdersController < ApplicationController
   def execute
     @payment = PayPal::SDK::REST::Payment.find(@order.payment_id)
     if @payment.execute( :payer_id => @order.payer_id   )
-      @order.update(order_status_id: 2) #Recevied
-      current_order = Order.create(user_id: current_user.id)
-      session[:order_id] = current_order.id
+      @order.update(order_status: 'Paid') #Recevied
+      new_order_after_pay (current_user)
       flash[:notice] = 'Payment success!'
       redirect_to histories_path
     else
@@ -59,5 +60,10 @@ class OrdersController < ApplicationController
   private
     def get_order
       @order = Order.find(params[:id])
+    end
+
+    def new_order_after_pay (user)
+      current_order = Order.create(user_id: user.id)
+      session[:order_id] = current_order.id
     end
 end
