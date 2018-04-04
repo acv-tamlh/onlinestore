@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
   def payment
     # Build Payment object
     @order.update(order_status: 'Waiting')
-    
+
     if current_user.full_name.blank?
       redirect_to edit_user_registration_path
     end
