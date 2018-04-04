@@ -57,5 +57,6 @@ RSpec.configure do |config|
   config.include(Shoulda::Matchers::ActiveModel, type: :model)
   config.include(Shoulda::Matchers::ActiveRecord, type: :model)
   config.include FactoryBot::Syntax::Methods
-
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::TestHelpers, :type => :controller
 end
