@@ -49,7 +49,7 @@ productGroups.each do |productGroup|
       asin = item.get('ASIN')
       title = item.get('ItemAttributes/Title')
       artist = item.get('ItemAttributes/Artist')
-      image = item.get('MediumImage/URL')
+      image = item.get('LargeImage/URL')
       #price
       price = item_attributes.get("ListPrice/Amount")
       currency = item_attributes.get("ListPrice/CurrencyCode")
