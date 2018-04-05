@@ -1,4 +1,7 @@
 require 'webmock/rspec'
+require 'json'
+require 'webmock'
+WebMock.allow_net_connect!
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

@@ -9,8 +9,4 @@ RSpec.describe Product, type: :model do
     it { should belong_to(:productgroup) }
     it { should have_many(:order_items) }
   end
-  describe 'product DESC' do
-  end
-  describe 'product Paginate' do
-  end
 end
