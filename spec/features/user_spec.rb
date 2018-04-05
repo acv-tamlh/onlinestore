@@ -10,7 +10,7 @@ RSpec.describe 'User', type: :feature do
     let!(:random) { rand(100) }
     let!(:random_email) { random.to_s + email }
     let!(:user) { create(:user, email: random_email, password: password) }
-    
+
     def logOut(path)
       visit path
       first(:link, 'Log out').click
@@ -113,6 +113,13 @@ RSpec.describe 'User', type: :feature do
         userAction(root_path, 'SignIn')
         fillIn('SignIn', user.email, user.password)
         expect(page).to have_content('Signed in successfully.')
+        find(:link, user.email).click
+        expect(page).to have_content('Update infomationUser')
+        fill_in 'Full name', with: 'Full name'
+        fill_in 'Phone', with: '0123123123123'
+        fill_in 'Address', with: 'Your address'
+        click_on('Update')
+        expect(page).to have_content('Your account has been updated successfully.')
       end
     end
   end
