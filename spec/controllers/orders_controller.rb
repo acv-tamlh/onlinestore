@@ -52,32 +52,10 @@ RSpec.describe OrdersController, type: :controller do
               "currency" =>  "USD" },
             "description" =>  "This is the payment transaction description." } ] }
 
-    FuturePaymentAttributes = {
-          "intent" =>  "authorize",
-          "payer" =>  {
-            "payment_method" =>  "paypal" },
-          "transactions" =>  [ {
-            "amount" =>  {
-              "total" =>  "1.00",
-              "currency" =>  "USD" },
-            "description" =>  "This is the payment transaction description." } ] }
-
-    ProcessorErrorResponse = {
-      "name" => "INSTRUMENT_DECLINED",
-      "message" => "The instrument presented was either declined by the processor or bank, or it can't be used for this payment.",
-      "information_link" => "https://developer.paypal.com/docs/api/#INSTRUMENT_DECLINED",
-      "debug_id" => "20dcd4f71107c",
-      "another_thing" => {
-        "avs_code" => "Y",
-        "cvv_code" => "N",
-        "response_code" => "0051"
-      }
-    }
-
     it "Validate user-agent", :unit => true do
       expect(API.user_agent).to match "PayPalSDK/PayPal-Ruby-SDK"
     end
-    describe "Payment" do
+    context "Payment" do
       it "Create with redirect urls" do
         payment = Payment.new(PaymentAttributesPayPal)
         # Create
@@ -102,7 +80,7 @@ RSpec.describe OrdersController, type: :controller do
         payment = Payment.find(payment_history.payments[0].id)
         expect(payment.error).to be_nil
       end
-      describe "Validation", :integration => true do
+      context "Validation", :integration => true do
         it "Create with empty values" do
           payment = Payment.new
           expect(payment.create).to be_falsey
@@ -131,7 +109,7 @@ RSpec.describe OrdersController, type: :controller do
         end
       end
 
-      describe "Sale", :integration => true do
+      context "Sale", :integration => true do
         before :each do
           @payment = Payment.new(PaymentAttributes)
           @payment.create
