@@ -4,6 +4,7 @@ require 'capybara/dsl'
 require 'capybara/rspec/matchers'
 require 'capybara/rspec/features'
 require 'capybara/rspec/matcher_proxies'
+require_relative 'support/controller_helpers'
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
@@ -37,6 +38,6 @@ RSpec.configure do |config|
       Capybara.current_driver = example.metadata[:driver] if example.metadata[:driver]
     end
   end
-  config.include Devise::Test::ControllerHelpers, type: :controller
-  config.include Devise::TestHelpers, :type => :controller
+  config.include Devise::Test::ControllerHelpers, :type => :controller
+  config.extend ControllerHelpers, :type => :controller
 end
