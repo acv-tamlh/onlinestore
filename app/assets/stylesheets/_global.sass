@@ -11,12 +11,27 @@ body
   height: 430px
   overflow: hidden
   background: #fff
+  border-radius: 3px
   p
     height: $line * $line__height * $font__size
     overflow: hidden
 .hide-input
   display: none
-.product__image-index
-  max-width: 223px
-  max-height: 223px
+.product__image-wrapper
+  height: 223px
+  position: relative
   overflow: hidden
+  .product__image-index
+    width: 100%
+    overflow: hidden
+    position: absolute
+    left: 50%
+    top: 50%
+    transform: translate(-50%, -50%)
+
+.custom__nav-background
+  background: #fff
+.float__right
+  float: right
+.clear
+  clear: both

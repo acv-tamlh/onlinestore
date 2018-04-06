@@ -1,7 +1,12 @@
 .col-xs-3
   .wrapper__product-item
     = link_to product_path(product.id) do
-      img.img.img-responsive.product__image-index src = product.try(:image)
+      .product__image-wrapper
+        -if product.try(:image)
+          img.img.img-responsive.product__image-index src = product.try(:image)
+        -else
+          img.img.img-responsive.product__image-index src = "https://www.amazon.com/dp/B0786RWGL2"
+
       .product-title.text-center
         p
           = product.try(:title)
