@@ -3,29 +3,9 @@
     span Welcome to &nbsp
     = @productgroup.title
     = @productgroup.try(:description) if !@productgroup.description.nil?
-
-div.container.product-container
-  - @limitproducts.each do |product|
-
-    .col-xs-3
-      .wrapper__product-item
-        = link_to product_path(product.id) do
-          img.img.img-responsive.product__image-index src = product.try(:image)
-          .product-title.text-center
-            p
-              = product.try(:title)
-        .price
-          h3.text-center
-            = product.formattedprice
-        .see-more
-          = link_to productgroup_path(product.productgroup.id) do
-            h4.text-warning.text-center More offers
-        .add__cart__now
-          = semantic_form_for @order_item, remote: true do |f|
-            .input-group.text-center.hide
-              = f.number_field :quantity, value: 1, class: "form-control", min: 1
-            .input-group-btn.text-center
-              = f.hidden_field :product_id, value: product.id
-              = f.submit "Add to Cart", class: "btn btn-primary"
+.row.wrapper__body
+  .col-xs-12.wrapper__product
+    - @limitproducts.each do |product|
+      = render 'products/product_item', product: product
 .col-xs-12.text-center
   = paginate @limitproducts
