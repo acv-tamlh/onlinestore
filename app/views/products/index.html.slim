@@ -1,14 +1,5 @@
-h1 Products#index
 
-.table-responsive
-  table.table
-    thead
-      tr
-        td.col-md-3 Title
-        td.col-md-2 Image
-        td.col-md-2 Price
-        td.col-md-2 colspan="2" Handle
-    tbody
-      - @products.each do |product|
-        = render 'product_item', product: product, order_item: @order_item
-= paginate @products
+- @products.each do |product|
+  = render 'product_item', product: product, order_item: @order_item
+.col-xs-12.text-center
+  = paginate @products

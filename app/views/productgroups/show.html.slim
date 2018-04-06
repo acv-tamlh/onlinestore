@@ -1,47 +1,31 @@
-h1 Productgroups#show
-h3.title
-  span Group Name:
-  = @productgroup.title
-h3 Description
-blockquote
-  -if @productgroup.try(:description)
-    = @productgroup.try(:description)
-  -else
-    | Dont have Desription
+.well.text-center
+  h3.title
+    span Welcome to &nbsp
+    = @productgroup.title
+    = @productgroup.try(:description) if !@productgroup.description.nil?
 
-
-h1 Product
 div.container.product-container
-.table-responsive
-  table.table
-    thead
-      tr
-        td.col-md-3 Title
-        td.col-md-2 Image
-        td.col-md-2 Price
-        td.col-md-2 colspan="2" Handle
-    tbody
-      - @limitproducts.each do |product|
-        tr
-          td.col-md-6 = product.title
-          td.col-md-2
-            img.img.img-thumbnail.img-responsive.product-thumbnail-image src = product.try(:image)
-          td.col-md-2 = product.formattedprice
-          td.col-md-2
-            = link_to 'Details', product_path(product)
-            = semantic_form_for @order_item, remote: true do |f|
-              h4.text-right
-              | Unit Price:
-              span style=("color: green") = number_to_currency(product.price, :separator => ",", :delimiter => ".")
-              .input-group
-                = f.number_field :quantity, value: 1, class: "form-control", min: 1
-              .input-group-btn
-                = f.hidden_field :product_id, value: product.id
-                = f.submit "Add to Cart", class: "btn btn-primary"
+  - @limitproducts.each do |product|
+
+    .col-xs-3
+      .wrapper__product-item
+        = link_to product_path(product.id) do
+          img.img.img-responsive.product__image-index src = product.try(:image)
+          .product-title.text-center
+            p
+              = product.try(:title)
+        .price
+          h3.text-center
+            = product.formattedprice
+        .see-more
+          = link_to productgroup_path(product.productgroup.id) do
+            h4.text-warning.text-center More offers
+        .add__cart__now
+          = semantic_form_for @order_item, remote: true do |f|
+            .input-group.text-center.hide
+              = f.number_field :quantity, value: 1, class: "form-control", min: 1
+            .input-group-btn.text-center
+              = f.hidden_field :product_id, value: product.id
+              = f.submit "Add to Cart", class: "btn btn-primary"
+.col-xs-12.text-center
   = paginate @limitproducts
-div Come back
-div.btn-group
-  button.btn.btn-default
-    = link_to 'Product List', products_path
-  button.btn.btn-default
-    =link_to 'Product group List', productgroups_path
