@@ -30,9 +30,9 @@ html
       - else
         = link_to new_user_session_path do
           button.btn.btn-link Sign in
-        - if !notice.blank?
-          p.notice = notice
-        -if !alert.blank?
+      - if !notice.blank?
+        p.notice = notice
+      -if !alert.blank?
           p.alert = alert if !alert.blank?
     div.container
       = yield
