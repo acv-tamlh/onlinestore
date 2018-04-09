@@ -52,6 +52,12 @@ group :development, :test do
   gem "awesome_print"
   gem "letter_opener"
   gem 'dotenv-rails'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'rails-controller-testing'
+  gem 'factory_bot_rails'
+  gem 'kaminari-rspec'
+  gem 'webmock'
 end
 
 group :development do
