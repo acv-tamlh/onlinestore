@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Relate To Cart', type: :feature do
+RSpec.describe 'Cart', type: :feature do
   let!(:product) { create(:product) }
   describe 'Add item to cart' do
     it 'add item index page', js: true do
