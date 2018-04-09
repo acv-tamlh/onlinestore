@@ -1,11 +1,16 @@
-h2
-  | Forgot your password?
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .actions
-    = f.submit "Send me reset password instructions"
-= render "devise/shared/links"
+.container
+  .card.card-container
+    img#profile-img.profile-img-card src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" /
+    p#profile-name.profile-name-card
+    h2.text-center
+      | Forgot your password?
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+      = devise_error_messages!
+      .field
+        = f.label :email
+        br
+        = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Your Email"
+      .actions
+        = f.submit "Send me reset password instructions", class: "btn btn-lg btn-primary btn-block btn-signin"
+        a.forgot-password
+          = render "devise/shared/links"
