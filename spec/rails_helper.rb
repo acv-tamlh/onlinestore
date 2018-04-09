@@ -5,6 +5,8 @@ require 'capybara/rspec/matchers'
 require 'capybara/rspec/features'
 require 'capybara/rspec/matcher_proxies'
 require_relative 'support/controller_helpers'
+require_relative 'support/spec_helper_rspec'
+require 'kaminari_rspec'
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
