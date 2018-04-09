@@ -1,4 +1,4 @@
-.col-xs-3
+.col-xs-12.col-md-3
   .wrapper__product-item
     = link_to product_path(product.id) do
       .product__image-wrapper
@@ -12,7 +12,7 @@
           = product.try(:title)
     .price
       h3.text-center
-        = product.formattedprice
+        = !product.formattedprice.nil? ? product.formattedprice : '$0.00'
     .see-more
       = link_to productgroup_path(product.productgroup.id) do
         h4.text-warning.text-center More offers

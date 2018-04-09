@@ -1,7 +1,7 @@
 .row.wrapper__body
   .col-xs-12.wrapper__product
-  - @products.each do |product|
-    = render 'product_item', product: product, order_item: @order_item
+    - @products.each do |product|
+      = render 'product_item', product: product, order_item: @order_item
 div.clear
 .col-xs-12.text-center
   = paginate @products
