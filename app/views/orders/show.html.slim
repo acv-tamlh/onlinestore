@@ -18,6 +18,7 @@
 - if user_signed_in?
   =render 'layouts/partials/update_infomation'
 -else
+  |Register to checkout
   = render 'layouts/partials/register_signin'
 
 - if @order.order_status != 'Paid' && @order_items.size > 0 && user_signed_in?
