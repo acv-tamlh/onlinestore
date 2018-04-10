@@ -8,4 +8,11 @@ RSpec.describe 'Relate To Product', type: :feature do
     expect(stubbed_resource.total_count).to eq(total_count)
     expect(stubbed_resource.current_page).to eq(2)
   end
+  it 'show product details' do
+    visit root_path
+    first(:link, resource.first.title)
+    expect(page).to have_content resource.first.title
+    expect(page).to have_content resource.first.feature
+    expect(page).to have_content resource.first.formattedprice
+  end
 end
