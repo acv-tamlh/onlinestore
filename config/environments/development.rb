@@ -1,6 +1,6 @@
 Rails.application.configure do
-  
-  config.action_mailer.delivery_method = :letter_opener
+
+  # config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -54,5 +54,15 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: ENV["HOST_NAME"] }
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+    address:              'smtp.sendgrid.net',
+    port:                 587,
+    domain:               'heroku.com',
+    user_name:            ENV["SENDGRID_USERNAME"],
+    password:             ENV["SENDGRID_PASSWORD"],
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
 end
