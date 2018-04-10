@@ -68,3 +68,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'pry-byebug'
 gem 'paypal-sdk-rest'
 gem 'enumerize'
+gem 'sendgrid-ruby'
