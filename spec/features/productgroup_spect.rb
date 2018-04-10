@@ -8,4 +8,13 @@ RSpec.describe 'Relate To Product group', type: :feature do
     expect(stubbed_resource.total_count).to eq(total_count)
     expect(stubbed_resource.current_page).to eq(2)
   end
+
+  it 'show product group details' do
+    visit root_path
+    first(:link, 'Product Group').click
+    productgroup = resource.last.productgroup
+    first(:link, productgroup.title)
+    expect(page).to have_content productgroup.title
+    expect(page).to have_content productgroup.description
+  end
 end
