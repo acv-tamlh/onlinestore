@@ -1,17 +1,29 @@
+<<<<<<< HEAD
   ACCESS_KEY_ID = "AKIAJWPWTVNYFLW7EKHQ"
   SECRET_KEY = "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"
+=======
+Productgroup.delete_all
+Product.delete_all
+OrderStatus.delete_all
+
+status = ['Inprocess', 'Recieved']
+status.each do |s|
+  puts s
+  OrderStatus.create(name: s)
+end
+
+  ACCESS_KEY_ID = ENV["ACCESS_KEY_ID"]
+  SECRET_KEY = ENV["SECRET_KEY"]
+>>>>>>> cart
   ENDPOINT = "webservices.amazon.in"
   ASSOCIATE_TAG = 'onlinestore'
 
 
-    Amazon::Ecs.configure do |options|
-      options[:AWS_access_key_id] = ACCESS_KEY_ID
-      options[:AWS_secret_key] = SECRET_KEY
-      options[:associate_tag] = ASSOCIATE_TAG
-    end
-
-Productgroup.delete_all
-Product.delete_all
+Amazon::Ecs.configure do |options|
+  options[:AWS_access_key_id] = ACCESS_KEY_ID
+  options[:AWS_secret_key] = SECRET_KEY
+  options[:associate_tag] = ASSOCIATE_TAG
+end
 
 productGroups = ['Book','DVD','Toys','VideoGames', 'ArtsAndCrafts']
 
@@ -38,7 +50,7 @@ productGroups.each do |productGroup|
       refurl = item.get('DetailPageURL')
       puts res.error                                 # error message
       puts asin
-      Product.create!(asin: asin, title: title, artist: artist, price: price, currency: currency, formattedprice: formattedprice, productgroup_id: prg.id, image: image, refurl: refurl)#, review: review)
+      p = Product.create(asin: asin, title: title, artist: artist, price: price, currency: currency, formattedprice: formattedprice, productgroup_id: prg.id, image: image, refurl: refurl)#, review: review)
     end
   end
 

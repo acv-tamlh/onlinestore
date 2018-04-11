@@ -1,0 +1,2 @@
+class ResetPasswordMailer < ApplicationMailer
+end
