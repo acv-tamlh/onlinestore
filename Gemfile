@@ -69,3 +69,6 @@ gem 'pry-byebug'
 gem 'paypal-sdk-rest'
 gem 'enumerize'
 gem 'sendgrid-ruby'
+gem "omniauth"
+gem "omniauth-google-oauth2"
+gem "omniauth-facebook"
