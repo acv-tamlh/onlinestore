@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Title:
+  = @channel.title
+p
+  strong Description:
+  = @channel.description
+p
+  strong Thumbnails default:
+  = @channel.thumbnails_default
+p
+  strong Thumbnails high:
+  = @channel.thumbnails_high
+
+=> link_to 'Edit', edit_channel_path(@channel)
+'|
+=< link_to 'Back', channels_path

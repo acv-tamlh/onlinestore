@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :channels
+  resources :create_channels
   root 'products#index'
   resources :products
   resources :productgroups

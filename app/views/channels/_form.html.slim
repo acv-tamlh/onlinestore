@@ -1,0 +1,9 @@
+= semantic_form_for @channel do |f|
+  = f.inputs do
+    = f.input :title
+    = f.input :description
+    = f.input :thumbnails_default
+    = f.input :thumbnails_high
+
+  = f.actions do
+    = f.action :submit, as: :input

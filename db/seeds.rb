@@ -1,46 +1,87 @@
-Productgroup.delete_all
-Product.delete_all
+#!/usr/bin/ruby
 
-ACCESS_KEY_ID = ENV["ACCESS_KEY_ID"]
-SECRET_KEY = ENV["SECRET_KEY"]
-ENDPOINT = "webservices.amazon.in"
-ASSOCIATE_TAG = 'onlinestore'
+# require 'rubygems'
+require 'google/api_client'
+# require 'trollop'
 
+# Set DEVELOPER_KEY to the API key value from the APIs & auth > Credentials
+# tab of
+# {{ Google Cloud Console }} <{{ https://cloud.google.com/console }}>
+# Please ensure that you have enabled the YouTube Data API for your project.
+DEVELOPER_KEY = 'AIzaSyCWnD0gD9WbwXq2cDYOChwuF2MSPgVgDOI'
+YOUTUBE_API_SERVICE_NAME = 'youtube'
+YOUTUBE_API_VERSION = 'v3'
 
-Amazon::Ecs.configure do |options|
-  options[:AWS_access_key_id] = ACCESS_KEY_ID
-  options[:AWS_secret_key] = SECRET_KEY
-  options[:associate_tag] = ASSOCIATE_TAG
+def get_service
+  client = Google::APIClient.new(
+    :key => DEVELOPER_KEY,
+    :authorization => nil,
+    :application_name => $PROGRAM_NAME,
+    :application_version => '1.0.0'
+  )
+  youtube = client.discovered_api(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION)
+
+  return client, youtube
 end
 
-productGroups = ['Book','DVD','Toys','VideoGames', 'ArtsAndCrafts']
+def main
 
-productGroups.each do |productGroup|
-  keywords = ['game', 'apple', 'phone', 'asus', 'friends']
-  prg = Productgroup.create!(title: productGroup)
-  keywords.each do |kw|
-    res = Amazon::Ecs.item_search(kw, {
-                                  :search_index => productGroup,
-                                  :response_group => 'Medium',
-                                  :sort => 'salesrank'
-                                  })
-    res.items.each do |item|
-      item_attributes = item.get_element('ItemAttributes')
-      asin = item.get('ASIN')
-      title = item.get('ItemAttributes/Title')
-      artist = item.get('ItemAttributes/Artist')
-      image = item.get('LargeImage/URL')
-      #price
-      price = item_attributes.get("ListPrice/Amount")
-      currency = item_attributes.get("ListPrice/CurrencyCode")
-      formattedprice = item_attributes.get("ListPrice/FormattedPrice")
-      #url to amazon
-      feature = item_attributes.get("Feature")
-      refurl = item.get('DetailPageURL')
-      puts res.error                                 # error message
-      puts asin
-      p = Product.create(asin: asin, title: title, artist: artist, price: price, currency: currency, formattedprice: formattedprice, productgroup_id: prg.id, image: image, refurl: refurl, feature: feature)#, review: review)
+  categories = ['Phim']
+
+  keywords = ['Phim hoạt hình', 'Chiến tranh']
+  categories.each do |category|
+    keywords.each do |kw|
+      opts = Trollop::options do
+        opt :q, 'Search term', :type => String, :default => kw
+        opt :max_results, 'Max results', :type => :int, :default => 50
+      end
+      client, youtube = get_service
+
+      begin
+        search_response = client.execute!(
+          :api_method => youtube.search.list,
+          :parameters => {
+            :part => 'snippet',
+            :q => opts[:q],
+            :maxResults => opts[:max_results]
+          }
+        )
+
+        videos = []
+        video_ids = []
+        video_images = []
+        channels = []
+        playlists = []
+        # puts   search_response.data.items.size
+        # Add each result to the appropriate list, and then display the lists of
+        # matching videos, channels, and playlists.
+        search_response.data.items.each do |search_result|
+          # puts search_result.snippet
+          # puts search_result.id.kind
+          case search_result.id.kind
+            when 'youtube#video'
+              videos << "#{search_result.snippet.title} (https://www.youtube.com/watch?v=#{search_result.id.videoId})"
+              video_ids << "#{search_result.id.videoId}"
+              video_images << "#{search_result.snippet.thumbnails.high.url}"
+            when 'youtube#channel'
+              channels << "#{search_result.snippet.title} (#{search_result.id.channelId})"
+            when 'youtube#playlist'
+              playlists << "#{search_result.snippet.title} (#{search_result.id.playlistId})"
+          end
+        end
+        puts "Videos image: ", video_images, "\n"
+        puts "Videos:\n", videos, "\n"
+        puts "Channels:\n", channels, "\n"
+        puts "Playlists:\n", playlists, "\n"
+        # video_ids.each do |video_id|
+          # puts "https://www.youtube.com/watch?v=" + video_id
+        # end
+      rescue Google::APIClient::TransmissionError => e
+        puts e.result.body
+      end
     end
   end
 
 end
+
+main
