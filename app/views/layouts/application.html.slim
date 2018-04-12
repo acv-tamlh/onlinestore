@@ -7,7 +7,7 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    nav.navbar
+    nav.navbar.custom__nav-background
       .navbar-header
         a.navbar-brand href= root_path  Online Store
       ul.nav.navbar-nav
@@ -20,22 +20,20 @@ html
         li
           - if user_signed_in?
             = link_to 'History', histories_path
-
-      form.navbar-form.navbar-left
-        .form-group
-          input.form-control name="search" placeholder="Search" type="text" /
-        / button.btn.btn-default type="submit"  Submit
       .col-xs-6.text-right
-        h1.cart-text
-        = render 'layouts/cart_text'
-        - if user_signed_in?
-            = link_to current_user.email, edit_user_registration_path
-            = link_to destroy_user_session_path, method: :delete do
-              button.btn.btn-link Logout
-        - else
-          = link_to new_user_session_path do
-            button.btn.btn-link Sign in
-        p.notice = notice
-        p.alert = alert
+        h4.cart-text
+          = render 'layouts/cart_text' if current_order.order_items.size > 0
+      - if user_signed_in?
+          = link_to current_user.email, edit_user_registration_path
+          = link_to destroy_user_session_path, method: :delete do
+            button.btn.btn-link.float__right Logout
+      - else
+        = link_to new_user_session_path do
+          button.btn.btn-link Sign in
+        - if !notice.blank?
+          p.notice = notice
+        -if !alert.blank?
+          p.alert = alert if !alert.blank?
     div.container
       = yield
+      div.clear
