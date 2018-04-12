@@ -1,0 +1,16 @@
+tr
+  td.col-md-6 = product.title
+  td.col-md-2
+    img.img.img-thumbnail.img-responsive.product-thumbnail-image src = product.try(:image)
+  td.col-md-2 = product.formattedprice
+  td.col-md-2
+    = link_to 'Details', product_path(product)
+    = semantic_form_for @order_item, remote: true do |f|
+      h4.text-right
+      | Unit Price:
+      span style=("color: green") = number_to_currency(product.price, :separator => ",", :delimiter => ".")
+      .input-group
+        = f.number_field :quantity, value: 1, class: "form-control", min: 1
+      .input-group-btn
+        = f.hidden_field :product_id, value: product.id
+        = f.submit "Add to Cart", class: "btn btn-primary"

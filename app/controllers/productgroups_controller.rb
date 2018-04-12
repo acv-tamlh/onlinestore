@@ -2,10 +2,12 @@ class ProductgroupsController < ApplicationController
   before_action :get_productgroup, only: [:show]
   before_action :params_productgroup, only: [:create, :update]
   def index
-    @productgroups = Productgroup.all
+    @productgroups = Productgroup.all.page(params[:page])
   end
 
   def show
+    @limitproducts = @productgroup.products.page(params[:page])
+    @order_item = current_order.order_items.new
   end
 
   def new
