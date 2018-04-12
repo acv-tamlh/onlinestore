@@ -16,8 +16,8 @@ div.container.product-container
   table.table
     thead
       tr
-        td.col-md-4 Title
-        td.col-md-4 Image
+        td.col-md-3 Title
+        td.col-md-2 Image
         td.col-md-2 Price
         td.col-md-2 colspan="2" Handle
     tbody
@@ -27,10 +27,17 @@ div.container.product-container
           td.col-md-2
             img.img.img-thumbnail.img-responsive.product-thumbnail-image src = product.try(:image)
           td.col-md-2 = product.formattedprice
-          td
+          td.col-md-2
             = link_to 'Details', product_path(product)
-          td
-            = link_to 'Add to cart', '#!'
+            = semantic_form_for @order_item, remote: true do |f|
+              h4.text-right
+              | Unit Price:
+              span style=("color: green") = number_to_currency(product.price, :separator => ",", :delimiter => ".")
+              .input-group
+                = f.number_field :quantity, value: 1, class: "form-control", min: 1
+              .input-group-btn
+                = f.hidden_field :product_id, value: product.id
+                = f.submit "Add to Cart", class: "btn btn-primary"
   = paginate @limitproducts
 div Come back
 div.btn-group

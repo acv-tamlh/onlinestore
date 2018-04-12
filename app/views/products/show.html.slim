@@ -1,26 +1,33 @@
-div.container
-  h3.title
-    = @product.title
-  div.left-container.col-md-8.panel
-    img.img.img-reponsive src = @product.image
-  div.right-container.col-md-4.well
-    h2.price
-      span Price: &nbsp
-      span = @product.formattedprice
-    div.artist
-      - if @product.try(:artist)
-        h5 Artist:
-        h3.artist = @product.try(:artist)
-    div.product-groups
-      h3.product-group
-        = link_to @product.productgroup.title, productgroup_path(@product.productgroup_id)
-    div.refurl
-      h6.right
-        = link_to 'Details on Amazon', @product.refurl
-  div.add-to-cart.btn.btn-success
-    = link_to 'Add to card'
+
+h3.title
+  = @product.title
+div.left-container.col-md-8.panel
+  img.img.img-reponsive src = @product.image
+div.right-container.col-md-4.well
+  h2.price
+    span Price: &nbsp
+    span = @product.formattedprice
+  div.artist
+    - if @product.try(:artist)
+      h5 Artist:
+      h3.artist = @product.try(:artist)
+  div.product-groups
+    h3.product-group
+      = link_to @product.productgroup.title, productgroup_path(@product.productgroup_id)
+  div.refurl
+    h6.right
+      = link_to 'Details on Amazon', @product.refurl
+  = semantic_form_for @order_item, remote: true do |f|
+    h4.text-right
+    | Unit Price:
+    span style=("color: green") = number_to_currency(@product.price, :separator => ",", :delimiter => ".")
+    .input-group
+      = f.number_field :quantity, value: 1, class: "form-control", min: 1
+    .input-group-btn
+      = f.hidden_field :product_id, value: @product.id
+      = f.submit "Add to Cart", class: "btn btn-primary"
+
 
 hr
 div.container.relate-product
   h3 Relate Product
-    
