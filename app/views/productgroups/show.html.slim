@@ -1,3 +1,15 @@
+<<<<<<< HEAD
+.well.text-center
+  h3.title
+    span Welcome to &nbsp
+    = @productgroup.title
+    = @productgroup.try(:description) if !@productgroup.description.nil?
+.row.wrapper__body
+  .col-xs-12.wrapper__product
+    - @limitproducts.each do |product|
+      = render 'products/product_item', product: product
+.col-xs-12.text-center
+=======
 h1 Productgroups#show
 h3.title
   span Group Name:
@@ -38,10 +50,5 @@ div.container.product-container
               .input-group-btn
                 = f.hidden_field :product_id, value: product.id
                 = f.submit "Add to Cart", class: "btn btn-primary"
+>>>>>>> ce523bba871d91112209eecab279950eb26d120f
   = paginate @limitproducts
-div Come back
-div.btn-group
-  button.btn.btn-default
-    = link_to 'Product List', products_path
-  button.btn.btn-default
-    =link_to 'Product group List', productgroups_path

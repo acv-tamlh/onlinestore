@@ -33,4 +33,6 @@
           .panel-heading
             = order.order_status
             = render 'history_order', order: order
-= paginate @histories
+.col-xs-12
+  = paginate @histories
+= render 'layouts/partials/back_home_history'

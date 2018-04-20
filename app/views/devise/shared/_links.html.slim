@@ -15,5 +15,8 @@
   br
 - if devise_mapping.omniauthable?
   - resource_class.omniauth_providers.each do |provider|
-    = link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider)
+    - case provider.to_s
+      - when "google_oauth2"
+        = link_to omniauth_authorize_path(resource_name, provider) do
+          img.img-responsive src = "https://developers.google.com/+/images/branding/sign-in-buttons/Red-signin_Google_base_44dp.png"
     br
