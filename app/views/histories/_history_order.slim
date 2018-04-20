@@ -1,0 +1,9 @@
+.panel-heading
+  = link_to history_path(order) do
+    |Order #
+    = order.id
+    |&nbspinfomation
+  p 
+    | Total: &nbsp
+    = order.subtotal
+    | &nbspcent

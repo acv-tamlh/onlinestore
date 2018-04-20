@@ -1,21 +1,27 @@
 .shopping-cart
-  - if @order.try(:full_name)
+  - if user_signed_in?
     .panel.panel-primary
       .panel-heading Checkout Infomation
       .panel-body
         div
           |Full Name:&nbsp
-          = @order.full_name
+          = current_user.full_name
         div
           |Address:&nbsp
-          = @order.address
+          = current_user.address
         div
           |Email:&nbsp
-          = @order.email
+          = current_user.email
         div
           |Phone:&nbsp
-          = @order.phone
-= link_to edit_order_path do
-  button.btn.btn-success
-    |Update checkout info
+          = current_user.phone
+- if user_signed_in?
+  =render 'layouts/partials/update_infomation'
+-else
+  = render 'layouts/partials/register_signin'
+
+- if @order.order_status != 'Paid' && @order_items.size > 0 && user_signed_in?
+  = link_to payment_order_path(current_order.id) do
+    button.btn.btn-primary Checkout
+
 = render 'shopping_cart'

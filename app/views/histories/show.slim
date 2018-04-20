@@ -1,0 +1,34 @@
+.shopping-cart
+  - if user_signed_in?
+    .panel.panel-primary
+      .panel-heading Checkout Infomation
+      .panel-body
+        div
+          |Full Name:&nbsp
+          = current_user.full_name
+        div
+          |Address:&nbsp
+          = current_user.address
+        div
+          |Email:&nbsp
+          = current_user.email
+        div
+          |Phone:&nbsp
+          = current_user.phone
+
+- if @order.order_status != 'Paid'
+  - if @order.order_items.size <= 0
+    = render 'layouts/partials/product_nil'
+  - else
+    =render 'layouts/partials/update_infomation'
+    = link_to payment_order_path(@order.id) do
+      button.btn.btn-primary Checkout
+
+= render 'history_orders'
+= link_to histories_path do
+  button.btn.btn-link
+    |Back to history
+= link_to root_path do
+  button.btn.btn-link
+    |Home
+= paginate @history

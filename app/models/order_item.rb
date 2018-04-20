@@ -4,6 +4,8 @@ class OrderItem < ApplicationRecord
 
   validate :product_present, :order_present
   before_save :finalize
+  
+  paginates_per 5
   # save product price, when user shopping and admin change price, user will use old price
   def unit_price
     return self[:unit_price] if persisted?
