@@ -1,24 +1,31 @@
 # README
+Bài test cho junior:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Xây dựng web site bán hàng online
 
-Things you may want to cover:
+-Các chức năng bắt buộc:
 
-* Ruby version
+    - Đăng ký thông tin user
+    - Login
+    - Logout
+    - Quên password
+    - Cập nhật thông tin user
+    - Danh sách tất cả sản phẩm theo thứ tự mới tới cũ (có phân trang).
+    - Danh sách tất cả sản phẩm theo 1 loại sản phẩm (có phân trang).
+    - Page chi tiết sản phẩm ( cho phép add số lượng sản phẩm cần add tới giỏ hàng)
+    - Giỏ hàng (có thể cập nhật và xoá sản phẩm)
+    - Page thông tin giao hàng
+    - Chức năng thanh toán (xử dụng paypal hay google checkout)
+    - Danh sách lịch sử mua hàng từ cũ đến mới (có phân trang).
+    - Chi tiết đơn hàng.
 
-* System dependencies
+# Note:
+```
+Tất cả sản phẩm không nhập bằng tay mà được lấy từ api của amazon (dùng db:seed để cập nhật sản phẩm và tạo mới)
 
-* Configuration
+Thực hiện và thiết kế tất cả chức năng trên.
 
-* Database creation
+Phần admin có thể dùng active admin hay rails admin để quản lý.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Viết rspec, bao gồm cho model, controller và view
+```
