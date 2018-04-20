@@ -1,31 +1,29 @@
-# README
-Bài test cho junior:
+# Test for junior:
 
-Xây dựng web site bán hàng online
+Build an online sales site
 
--Các chức năng bắt buộc:
+Required Functions:
 
-    - Đăng ký thông tin user
-    - Login
-    - Logout
-    - Quên password
-    - Cập nhật thông tin user
-    - Danh sách tất cả sản phẩm theo thứ tự mới tới cũ (có phân trang).
-    - Danh sách tất cả sản phẩm theo 1 loại sản phẩm (có phân trang).
-    - Page chi tiết sản phẩm ( cho phép add số lượng sản phẩm cần add tới giỏ hàng)
-    - Giỏ hàng (có thể cập nhật và xoá sản phẩm)
-    - Page thông tin giao hàng
-    - Chức năng thanh toán (xử dụng paypal hay google checkout)
-    - Danh sách lịch sử mua hàng từ cũ đến mới (có phân trang).
-    - Chi tiết đơn hàng.
+    Register user information
+    Login
+    Logout
+    Forgot password
+    Update user information
+    List all products in new order to old (with paging).
+    List all products by product type (paging).
+    Product details page (allows to add the number of products to add to the cart)
+    Shopping cart (can update and delete products)
+    Page information delivery
+    Payment function (using paypal or google checkout)
+    A list of purchase history from old to new (with paging).
+    Line item.
 
 # Note:
-```
-Tất cả sản phẩm không nhập bằng tay mà được lấy từ api của amazon (dùng db:seed để cập nhật sản phẩm và tạo mới)
 
-Thực hiện và thiết kế tất cả chức năng trên.
+All products are not imported by hand but are taken from amazon's api (use db: seed to update product and create new)
 
-Phần admin có thể dùng active admin hay rails admin để quản lý.
+Implement and design all functions.
 
-Viết rspec, bao gồm cho model, controller và view
-```
+Admin can use active admin or rails admin to manage.
+
+Write rspec, including for model, controller and view
