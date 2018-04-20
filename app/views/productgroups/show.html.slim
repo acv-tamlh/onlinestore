@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .well.text-center
   h3.title
     span Welcome to &nbsp
@@ -8,4 +9,46 @@
     - @limitproducts.each do |product|
       = render 'products/product_item', product: product
 .col-xs-12.text-center
+=======
+h1 Productgroups#show
+h3.title
+  span Group Name:
+  = @productgroup.title
+h3 Description
+blockquote
+  -if @productgroup.try(:description)
+    = @productgroup.try(:description)
+  -else
+    | Dont have Desription
+
+
+h1 Product
+div.container.product-container
+.table-responsive
+  table.table
+    thead
+      tr
+        td.col-md-3 Title
+        td.col-md-2 Image
+        td.col-md-2 Price
+        td.col-md-2 colspan="2" Handle
+    tbody
+      - @productgroup.products.each do |product|
+        tr
+          td.col-md-6 = product.title
+          td.col-md-2
+            img.img.img-thumbnail.img-responsive.product-thumbnail-image src = product.try(:image)
+          td.col-md-2 = product.formattedprice
+          td.col-md-2
+            = link_to 'Details', product_path(product)
+            = semantic_form_for @order_item, remote: true do |f|
+              h4.text-right
+              | Unit Price:
+              span style=("color: green") = number_to_currency(product.price, :separator => ",", :delimiter => ".")
+              .input-group
+                = f.number_field :quantity, value: 1, class: "form-control", min: 1
+              .input-group-btn
+                = f.hidden_field :product_id, value: product.id
+                = f.submit "Add to Cart", class: "btn btn-primary"
+>>>>>>> ce523bba871d91112209eecab279950eb26d120f
   = paginate @limitproducts
