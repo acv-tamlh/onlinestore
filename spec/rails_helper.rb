@@ -5,6 +5,10 @@ require 'capybara/rspec/matchers'
 require 'capybara/rspec/features'
 require 'capybara/rspec/matcher_proxies'
 require_relative 'support/controller_helpers'
+require_relative 'support/spec_helper_rspec'
+require 'kaminari_rspec'
+include ActionView::Helpers::NumberHelper
+
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
@@ -38,6 +42,12 @@ RSpec.configure do |config|
       Capybara.current_driver = example.metadata[:driver] if example.metadata[:driver]
     end
   end
+
+  Capybara.register_driver :chrome do |app|
+    Capybara::Selenium::Driver.new(app, :browser => :chrome)
+  end
+
+  Capybara.javascript_driver = :chrome
   config.include Devise::Test::ControllerHelpers, :type => :controller
   config.extend ControllerHelpers, :type => :controller
 end

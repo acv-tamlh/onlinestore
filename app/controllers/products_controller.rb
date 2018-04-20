@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
 
   def show
     @order_item = current_order.order_items.new
+    @relate_products = @product.productgroup.products.page(params[:page]).per(4)
   end
 
   private

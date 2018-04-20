@@ -1,9 +1,17 @@
 require 'webmock/rspec'
 require 'json'
 require 'webmock'
+require 'kaminari_rspec'
 WebMock.allow_net_connect!
+require_relative 'support/spec_helper_rspec'
+require 'kaminari_rspec'
+
+include KaminariRspec::TestHelpers
 
 RSpec.configure do |config|
+
+config.include KaminariRspec::TestHelpers, :type => :controller
+
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
