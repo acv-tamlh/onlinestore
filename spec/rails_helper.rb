@@ -48,7 +48,6 @@ RSpec.configure do |config|
   end
 
   Capybara.javascript_driver = :chrome
-
   config.include Devise::Test::ControllerHelpers, :type => :controller
   config.extend ControllerHelpers, :type => :controller
 end
