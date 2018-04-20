@@ -1,24 +1,34 @@
-# README
+# Link result
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+https://onlinestore-tamlhacv.herokuapp.com/
 
-Things you may want to cover:
+# Test for junior:
 
-* Ruby version
+Build an online sales site
 
-* System dependencies
+- Required Functions:
+```
+   - Register user information
+   - Login
+   - Logout
+   - Forgot password
+   - Update user information
+   - List all products in new order to old (with paging).
+   - List all products by product type (paging).
+   - Product details page (allows to add the number of products to add to the cart)
+   - Shopping cart (can update and delete products)
+   - Page information delivery
+   - Payment function (using paypal or google checkout)
+   - A list of purchase history from old to new (with paging).
+   - Line item.
+```
+# Note:
+```
+All products are not imported by hand but are taken from amazon's api (use db: seed to update product and create new)
 
-* Configuration
+Implement and design all functions.
 
-* Database creation
+Admin can use active admin or rails admin to manage.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Write rspec, including for model, controller and view
+```
