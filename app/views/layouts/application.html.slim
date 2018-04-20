@@ -22,7 +22,7 @@ html
             = link_to 'History', histories_path
       .col-xs-6.text-right
         h4.cart-text
-          = render 'layouts/cart_text' if current_order.order_items.size > 0
+          = render 'layouts/cart_text', :formats => ["text/html"]  if current_order.order_items.size > 0
       - if user_signed_in?
           = link_to current_user.email, edit_user_registration_path
           = link_to destroy_user_session_path, method: :delete do
@@ -30,9 +30,9 @@ html
       - else
         = link_to new_user_session_path do
           button.btn.btn-link Sign in
-        - if !notice.blank?
-          p.notice = notice
-        -if !alert.blank?
+      - if !notice.blank?
+        p.notice = notice
+      -if !alert.blank?
           p.alert = alert if !alert.blank?
     div.container
       = yield
