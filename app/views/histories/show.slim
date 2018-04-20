@@ -25,10 +25,5 @@
       button.btn.btn-primary Checkout
 
 = render 'history_orders'
-= link_to histories_path do
-  button.btn.btn-link
-    |Back to history
-= link_to root_path do
-  button.btn.btn-link
-    |Home
 = paginate @history
+= render 'layouts/partials/back_home_history'

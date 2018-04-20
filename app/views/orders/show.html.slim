@@ -25,3 +25,6 @@
     button.btn.btn-primary Checkout
 
 = render 'shopping_cart'
+= paginate @limit_order_items
+
+= render 'layouts/partials/back_home_history'
