@@ -15,11 +15,6 @@ Rails.application.routes.draw do
   resources :histories, only: [:index, :show]
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-<<<<<<< HEAD
-  devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-=======
   devise_for :users, controllers: { registrations: 'registrations' }
->>>>>>> cart
 
 end
